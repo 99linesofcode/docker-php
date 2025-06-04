@@ -13,9 +13,9 @@ Additionally, this repository contains a production ready FrankenPHP container t
 
 Almost all the relevant configuration is done in/from the `docker-compose.yml` file. By default the devcontainer is disabled.
 
-## Contributing to docker-base
+## Contributing to docker-php
 
-Thank you for considering contributing to docker-base. Please review our [Contribution Guidelines](https://github.com/99linesofcode/.github/blob/main/.github/CONTRIBUTING.md).
+Thank you for considering contributing to docker-php. Please review our [Contribution Guidelines](https://github.com/99linesofcode/.github/blob/main/.github/CONTRIBUTING.md).
 
 ## Code of Conduct
 
@@ -27,4 +27,4 @@ Please review [our security policy](https://github.com/99linesofcode/.github?tab
 
 ## License
 
-docker-base is open-sourced software licensed under the [MIT license](https://github.com/99linesofcode/docker-base?tab=MIT-1-ov-file)
+docker-php is open-sourced software licensed under the [MIT license](https://github.com/99linesofcode/docker-php?tab=MIT-1-ov-file)
