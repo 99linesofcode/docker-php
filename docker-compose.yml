@@ -1,33 +1,4 @@
 services:
-  # devcontainer:
-  #   build:
-  #     context: .
-  #     dockerfile: docker/devcontainer/Dockerfile
-  #     # See https://docs.docker.com/compose/compose-file/build/#ssh
-  #     ssh:
-  #       - default # lets the builder connect to the default SSH agent
-  #     args:
-  #       - PUID=${PUID:-1000}
-  #       - PGID=${PGID:-1000}
-  #       - TZ=${TIMEZONE:-Europe/Amsterdam}
-  #   container_name: ${APP_NAME}-devcontainer
-  #   tty: true
-  #   environment:
-  #     - XDEBUG_MODE=${PHP_XDEBUG_MODE:-off}
-  #     - XDEBUG_CONFIG=${PHP_XDEBUG_CONFIG:-client_host=host.docker.internal output_dir=/tmp/xdebug profiler_output_name=cachegrind.out.%R.%u}
-  #   extra_hosts:
-  #     - "host.docker.internal:host-gateway" # for accessing the host from inside the container
-  #   depends_on:
-  #     - meilisearch
-  #     - mysql
-  #     - redis
-  #   volumes:
-  #     - $HOME/.ssh:/config/.ssh:ro # the SSH agent will need access to your configuration
-  #     - $HOME/.npmrc:/config/.npmrc # necessary when installing packages from a private repository
-  #     - $HOME/.config/composer/auth.json:/config/.config/composer/auth.json # necessary when installing packages from a private repository
-  #     - ../:/app
-  #     # - $HOME/Development/profiling/${APP_NAME}:/tmp/xdebug # mount xdebug and cachegrind output for profiling analysis on host machine
-
   # frankenphp: # PHP 8.2+
   #   build:
   #     context: .
@@ -39,22 +10,21 @@ services:
   #     - meilisearch
   #     - mysql
   #     - redis
+  #     - soketi
   #   volumes:
   #     - .:/app
   #     - $HOME/Development/profiling/${APP_NAME}:/tmp/xdebug # mount xdebug and cachegrind output for profiling analysis on host machine
 
-  soketi:
-    container_name: ${APP_NAME}-soketi
-    image: quay.io/soketi/soketi:latest
-    environment:
-      - SOKETI_DEBUG=${SOKETI_DEBUG:-1}
-      - SOKETI_METRICS_SERVER_PORT=${SOKETI_METRICS_SERVER_PORT:-9601}
-      - SOKETI_DEFAULT_APP_ID=${PUSHER_APP_ID}
-      - SOKETI_DEFAULT_APP_KEY=${PUSHER_APP_KEY}
-      - SOKETI_DEFAULT_APP_SECRET=${PUSHER_APP_SECRET}
+  mailpit:
+    container_name: ${APP_NAME}-mailpit
+    image: axllent/mailpit:latest
     ports:
-      - ${PUSHER_FRONTEND_PORT:-6001}:6001
-      - ${PUSHER_METRICS_PORT:-9601}:9601
+      - ${FORWARD_MAILPIT_PORT:-1025}:1025
+      - ${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025
+    healthcheck:
+      test: ["CMD", "curl", "-Ss", "http://localhost:8025/livez"]
+      retries: 3
+      timeout: 5s
 
   meilisearch:
     container_name: ${APP_NAME}-meilisearch
@@ -76,45 +46,12 @@ services:
       timeout: 5s
 
   mysql:
-    container_name: ${APP_NAME}-mysql
-    image: mysql/mysql-server:8.0
-    ports:
-      - ${FORWARD_DB_PORT:-3306}:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - MYSQL_ROOT_HOST=%
-      - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_USER=${DB_USERNAME}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
+    extends:
+      file: ./docker/base/docker-compose.yml
+      service: mysql
     volumes:
       - mysql:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
-      retries: 3
-      timeout: 5s
-
-  # FIXME: serve different urls for process.browser and SSR to avoid CORS issues when SSR
-  # FIXME: dont volume mount /node_modules to drastically improve performance
-  #
-  # nodejs:
-  #   container_name: ${APP_NAME}-nodejs
-  #   image: node:alpine
-  #   user: node
-  #   working_dir: /var/www/html
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-  #   ports:
-  #     - ${FORWARD_NODE_PORT:-3000}:3000
-  #     - ${FORWARD_VITE_PORT:-24678}:24678
-  #   environment:
-  #     - NODE_ENV=${APP_ENV:-development}
-  #     - NUXT_HOST=nodejs
-  #     - NUXT_PORT=${FORWARD_NODE_PORT:-3000}
-  #   volumes:
-  #     - ../nuxt:/var/www/html
-  #   command: npm run dev
-  #   depends_on: # NOTE: cannot be used when extending, extract to child
-  #     - php
+      # - $HOME/dbdump.sql:/docker-entrypoint-initdb.d/dbdump.sql # dbdump.sql is read on init and can be used to prepopulate the db
 
   nginx:
     image: lscr.io/linuxserver/nginx:1.26.3 # PHP 8.1
@@ -123,54 +60,45 @@ services:
         - PUID=${PUID:-1000}
         - PGID=${PGID:-1000}
         - TZ=${TIMEZONE:-Europe/Amsterdam}
+    depends_on:
+      - meilisearch
+      - mysql
+      - redis
+      - soketi
     volumes:
       - $HOME/.config/${APP_NAME}:/config
-      - $HOME/Development/Leren voor Morgen/mbo.sustainabul.com:/app/www
+      - .:/app/www
     ports:
       - 80:80
       - 443:443
     restart: unless-stopped
 
+  phpmyadmin:
+    extends:
+      file: ./docker/base/docker-compose.yml
+      service: phpmyadmin
+    depends_on:
+      - mysql
+
   redis:
-    container_name: ${APP_NAME}-redis
-    image: redis:alpine
-    ports:
-      - ${FORWARD_REDIS_PORT:-6379}:6379
+    extends:
+      file: ./docker/base/docker-compose.yml
+      service: redis
     volumes:
       - redis:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      retries: 3
-      timeout: 5s
 
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: ${APP_NAME}-phpmyadmin
+  soketi:
+    container_name: ${APP_NAME}-soketi
+    image: quay.io/soketi/soketi:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - MYSQL_USER=${DB_USERNAME}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
-      - PMA_HOST=${APP_NAME}-mysql
-      - PMA_PMADB=phpmyadmin
-      - UPLOAD_LIMIT=512M
-    restart: unless-stopped
+      - SOKETI_DEBUG=${SOKETI_DEBUG:-1}
+      - SOKETI_METRICS_SERVER_PORT=${SOKETI_METRICS_SERVER_PORT:-9601}
+      - SOKETI_DEFAULT_APP_ID=${PUSHER_APP_ID}
+      - SOKETI_DEFAULT_APP_KEY=${PUSHER_APP_KEY}
+      - SOKETI_DEFAULT_APP_SECRET=${PUSHER_APP_SECRET}
     ports:
-      - ${PHPMYADMIN_PORT:-8888}:80
-    healthcheck:
-      test: ["CMD", "curl", "-Ss", "http://localhost/robots.txt"]
-      retries: 3
-      timeout: 5s
-
-  mailpit:
-    container_name: ${APP_NAME}-mailpit
-    image: axllent/mailpit:latest
-    ports:
-      - ${FORWARD_MAILPIT_PORT:-1025}:1025
-      - ${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025
-    healthcheck:
-      test: ["CMD", "curl", "-Ss", "http://localhost:8025/livez"]
-      retries: 3
-      timeout: 5s
+      - ${PUSHER_FRONTEND_PORT:-6001}:6001
+      - ${PUSHER_METRICS_PORT:-9601}:9601
 
   # webgrind:
   #   container_name: ${APP_NAME}-webgrind
