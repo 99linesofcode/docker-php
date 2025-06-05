@@ -40,6 +40,7 @@ services:
   php:
     container_name: ${APP_NAME}-php
     image: lscr.io/linuxserver/nginx:1.26.3 # PHP 8.1
+    working_dir: /app/www
     environment:
         - PUID=${PUID:-1000}
         - PGID=${PGID:-1000}
