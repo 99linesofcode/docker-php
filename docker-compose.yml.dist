@@ -1,0 +1,111 @@
+services:
+  # devcontainer:
+  #   extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+  #     file: ./docker/docker-compose.yml
+  #     service: devcontainer
+  #   volumes:
+  #     - $HOME/.ssh:/config/.ssh:ro # the SSH agent will need access to your configuration
+  #     - $HOME/.npmrc:/config/.npmrc # necessary when installing packages from a private repository
+  #     - $HOME/.config/composer/auth.json:/config/.config/composer/auth.json # necessary when installing packages from a private repository
+  #     - $HOME/Development/profiling/${APP_NAME}:/tmp/xdebug # mount xdebug and cachegrind output for profiling analysis on host machine
+  #     - ../:/app
+
+  mailpit:
+    extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+      file: ./docker/docker-compose.yml
+      service: mailpit
+
+  # meilisearch:
+  #   extends:
+  #     file: ./docker/docker-compose.yml
+  #     service: meilisearch
+  #   volumes:
+  #     - meilisearch:/meili_data
+  mysql:
+    extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+      file: ./docker/docker-compose.yml
+      service: mysql
+    volumes:
+      - mysql:/var/lib/mysql
+      # - $HOME/dbdump.sql:/docker-entrypoint-initdb.d/dbdump.sql # dbdump.sql is read on init and can be used to prepopulate the db
+
+#   php: # nginx
+#     build:
+#       args:
+#         - RELEASE_VERSION=1.22.1
+#         - PHP_VERSION=8.1
+#     container_name: ${APP_NAME}-php
+#     extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+#       file: ./docker/docker-compose.yml
+#       service: nginx
+#     depends_on:
+#       # - meilisearch
+#       - mysql
+#       - redis
+#       # - soketi
+#     volumes:
+#       - $HOME/.config/${APP_NAME}:/config
+#       # - $HOME/Development/profiling/${APP_NAME}:/tmp/xdebug # mount xdebug and cachegrind output for profiling analysis on host machine
+#       - .:/app/www
+
+  php: # frankenphp
+    extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+      file: ./docker/docker-compose.yml
+      service: frankenphp
+    build:
+      args:
+        - PHP_VERSION=8.3
+    container_name: ${APP_NAME}-php
+    environment:
+      - XDEBUG_MODE=${PHP_XDEBUG_MODE:-off}
+      - XDEBUG_CONFIG=${PHP_XDEBUG_CONFIG:-client_host=host.docker.internal output_dir=/tmp/xdebug profiler_output_name=cachegrind.out.%R.%u}
+    depends_on:
+    #   - meilisearch
+      - mysql
+      - redis
+    #   - soketi
+    volumes:
+      - .:/app
+    #   - $HOME/Development/profiling/${APP_NAME}:/tmp/xdebug # mount xdebug and cachegrind output for profiling analysis on host machine
+
+  phpmyadmin:
+    extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+      file: ./docker/docker-compose.yml
+      service: phpmyadmin
+    depends_on:
+      - mysql
+
+  redis:
+    extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+      file: ./docker/docker-compose.yml
+      service: redis
+    volumes:
+      - redis:/data
+
+  # soketi:
+  #   extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+  #     file: ./docker/docker-compose.yml
+  #     service: soketi
+
+  # webgrind:
+  #   extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
+  #     file: ./docker/docker-compose.yml
+  #     service: webgrind
+  #   volumes:
+  #     - $HOME/Development/profiling/${APP_NAME}:/tmp
+
+volumes:
+  # meilisearch:
+  #   name: ${APP_NAME}-vol-meilisearch
+  #   driver: local
+  mysql:
+    name: ${APP_NAME}-vol-mysql
+    driver: local
+  redis:
+    name: ${APP_NAME}-vol-redis
+    driver: local
+
+networks:
+  default:
+    name: "${APP_NAME}-net"
+    driver: bridge

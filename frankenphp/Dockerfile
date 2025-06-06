@@ -1,49 +1,26 @@
 # syntax=docker/dockerfile:1
 
-ARG PACKAGE_VERSION="1.1.0"
-ARG BASE_IMAGE="dunglas/frankenphp:${PACKAGE_VERSION}"
+ARG PHP_VERSION="8.4"
+ARG BASE_IMAGE="dunglas/frankenphp:php${PHP_VERSION}-alpine"
 
-FROM "${BASE_IMAGE}-builder" AS builder
+FROM ${BASE_IMAGE}
 
-COPY --from=caddy:builder /usr/bin/xcaddy /usr/bin/xcaddy
-
-# CGO must be enabled to build FrankenPHP
-ENV CGO_ENABLED=1 \
-    XCADDY_SETCAP=1 \
-    XCADDY_GO_BUILD_FLAGS="-ldflags='-w -s' -tags=nobadger,nomysql,nopgx"
-
-RUN set -eux; \
-    xcaddy build \
-    --output /usr/local/bin/frankenphp \
-    --with github.com/dunglas/frankenphp=./ \
-    --with github.com/dunglas/frankenphp/caddy=./caddy/ \
-    --with github.com/caddy-dns/cloudflare;
-
-FROM ${BASE_IMAGE} AS runner
+LABEL org.opencontainers.image.authors="99linesofcode@gmail.com"
 
 WORKDIR /app
 
 RUN set -eux; \
     install-php-extensions \
     @composer \
-    intl \
+    bcmath \
     pdo_mysql \
+    pdo_pgsql \
+    intl \
     zip \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
-    && cp $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini;
+    xdebug;
 
-# Replace the official binary by the one containing our custom modules
-COPY --from=builder /usr/local/bin/frankenphp /usr/local/bin/frankenphp
-COPY --link docker/frankenphp/Caddyfile /etc/caddy/Caddyfile
-COPY --link --chmod=755 docker/frankenphp/docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint
+COPY ./frankenphp/php.ini-development /usr/local/etc/php/php.ini
 
 COPY . ./
-
-# TODO:: separate into another multi stage build step so composer isn't bundled either
-RUN set -eux; \
-    composer install -n --no-cache --prefer-dist --no-dev --no-scripts -o -a;
-
-ENTRYPOINT ["docker-php-entrypoint"]
 
 CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]
