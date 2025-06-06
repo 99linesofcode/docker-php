@@ -49,7 +49,7 @@ services:
   frankenphp: # PHP 8.2+
     build:
       context: .
-      dockerfile: ./frankenphp/Dockerfile.dev
+      dockerfile: ./frankenphp/Dockerfile
     container_name: ${APP_NAME}-frankenphp
     environment:
       - XDEBUG_MODE=${PHP_XDEBUG_MODE:-off}

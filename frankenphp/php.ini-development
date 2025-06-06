@@ -1,0 +1,12 @@
+pcov.directory=.
+post_max_size=100M
+upload_max_filesize=100M
+variables_order=EGPCS
+
+opcache.enabled=0
+
+xdebug.client_host=host.docker.internal
+xdebug.log=/tmp/xdebug.log
+xdebug.log_level=10
+xdebug.mode=debug
+xdebug.start_with_request=yes
