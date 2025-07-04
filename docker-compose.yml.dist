@@ -29,25 +29,6 @@ services:
       - mysql:/var/lib/mysql
       # - $HOME/dbdump.sql:/docker-entrypoint-initdb.d/dbdump.sql # dbdump.sql is read on init and can be used to prepopulate the db
 
-#   php: # nginx
-#     build:
-#       args:
-#         - RELEASE_VERSION=1.22.1
-#         - PHP_VERSION=8.1
-#     container_name: ${APP_NAME}-php
-#     extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-#       file: ./docker/docker-compose.yml
-#       service: nginx
-#     depends_on:
-#       # - meilisearch
-#       - mysql
-#       - redis
-#       # - soketi
-#     volumes:
-#       - $HOME/.config/${APP_NAME}:/config
-#       # - $HOME/Development/profiling/${APP_NAME}:/tmp/xdebug # mount xdebug and cachegrind output for profiling analysis on host machine
-#       - .:/app/www
-
   php: # frankenphp
     extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
       file: ./docker/docker-compose.yml
