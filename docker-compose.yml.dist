@@ -55,6 +55,7 @@ services:
     build:
       args:
         - PHP_VERSION=8.3
+      target: development
     container_name: ${APP_NAME}-php
     environment:
       - XDEBUG_MODE=${PHP_XDEBUG_MODE:-off}

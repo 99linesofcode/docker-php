@@ -11,7 +11,15 @@ Additionally, this repository contains a production ready FrankenPHP container t
 1. Configure the environment variables defined in the `.env.example` file in your `.env` in the application root;
 1. Run `docker compose up -d` to spin up your development environment.
 
-Almost all the relevant configuration is done in/from the `docker-compose.yml` file. By default the devcontainer is disabled.
+Almost all the relevant configuration is done in/from the `docker-compose.yml` file. Optional services are disabled by default. You can enable these by uncommenting their respective service blocks.
+
+## Production
+
+There are several ways to run Docker PHP in production. Using `docker compose -d` similarly to how you run it in development or by manually building and packaging the application up into a docker image and pushing it to and pulling it from a container registry.
+
+The FrankenPHP container uses the multi-stage build process and can be further optimized for production. If you intend to use `docker compose` you will have to change the `services.frankenphp.build.target` to `production`.
+
+If you choose to package your application and serve it differently, make sure to pass the `--target production` flag to your `docker build` command like so: `docker build --target production -t frankenphp:production -f ./frankenphp/Dockerfile .`.
 
 ## Contributing to docker-php
 
