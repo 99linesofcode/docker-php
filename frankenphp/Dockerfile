@@ -29,7 +29,7 @@ RUN set -eux; \
     @composer \
     xdebug;
 
-COPY --link ./frankenphp/php.ini-development ${PHP_INI_DIR}/php.ini
+COPY --link ./docker/frankenphp/php.ini-development ${PHP_INI_DIR}/php.ini
 
 #
 # Production
@@ -65,7 +65,7 @@ RUN set -eux; \
 
 # Replace the official binary by the one containing our custom modules
 COPY --from=caddy-builder /usr/local/bin/frankenphp /usr/local/bin/frankenphp
-COPY --link ./frankenphp/Caddyfile /etc/caddy/Caddyfile
-COPY --link --chmod=755 ./frankenphp/docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint>
+COPY --link ./docker/frankenphp/Caddyfile /etc/caddy/Caddyfile
+COPY --link --chmod=755 ./docker/frankenphp/docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint>
 
 COPY . ./

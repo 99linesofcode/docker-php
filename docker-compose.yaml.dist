@@ -1,7 +1,7 @@
 services:
   # devcontainer:
   #   extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-  #     file: ./docker/docker-compose.yml
+  #     file: ./docker/docker-compose.yaml
   #     service: devcontainer
   #   volumes:
   #     - $HOME/.ssh:/config/.ssh:ro # the SSH agent will need access to your configuration
@@ -12,18 +12,18 @@ services:
 
   mailpit:
     extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-      file: ./docker/docker-compose.yml
+      file: ./docker/docker-compose.yaml
       service: mailpit
 
   # meilisearch:
   #   extends:
-  #     file: ./docker/docker-compose.yml
+  #     file: ./docker/docker-compose.yaml
   #     service: meilisearch
   #   volumes:
   #     - meilisearch:/meili_data
   mysql:
     extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-      file: ./docker/docker-compose.yml
+      file: ./docker/docker-compose.yaml
       service: mysql
     volumes:
       - mysql:/var/lib/mysql
@@ -31,7 +31,7 @@ services:
 
   php: # frankenphp
     extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-      file: ./docker/docker-compose.yml
+      file: ./docker/docker-compose.yaml
       service: frankenphp
     build:
       args:
@@ -52,26 +52,26 @@ services:
 
   phpmyadmin:
     extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-      file: ./docker/docker-compose.yml
+      file: ./docker/docker-compose.yaml
       service: phpmyadmin
     depends_on:
       - mysql
 
   redis:
     extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-      file: ./docker/docker-compose.yml
+      file: ./docker/docker-compose.yaml
       service: redis
     volumes:
       - redis:/data
 
   # soketi:
   #   extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-  #     file: ./docker/docker-compose.yml
+  #     file: ./docker/docker-compose.yaml
   #     service: soketi
 
   # webgrind:
   #   extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-  #     file: ./docker/docker-compose.yml
+  #     file: ./docker/docker-compose.yaml
   #     service: webgrind
   #   volumes:
   #     - $HOME/Development/profiling/${APP_NAME}:/tmp
