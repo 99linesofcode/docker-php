@@ -23,7 +23,7 @@ If you choose to package your application and serve it differently, make sure to
 
 ## Contributing to docker-php
 
-Thank you for considering contributing to docker-php. Please review our [Contribution Guidelines](https://github.com/99linesofcode/.github/blob/main/.github/CONTRIBUTING.md).
+Please review the [Contribution Guidelines](https://github.com/99linesofcode/.github/blob/main/.github/CONTRIBUTING.md).
 
 ## Code of Conduct
 
@@ -31,8 +31,8 @@ In order to ensure that the community is welcoming to all, please review and abi
 
 ## Security Vulnerabilities
 
-Please review [our security policy](https://github.com/99linesofcode/.github?tab=security-ov-file) on how to report security vulnerabilities.
+Please review [the security policy](https://github.com/99linesofcode/.github?tab=security-ov-file) on how to report security vulnerabilities.
 
 ## License
 
-docker-php is open-sourced software licensed under the [MIT license](https://github.com/99linesofcode/docker-php?tab=MIT-1-ov-file)
+This software is open source and licensed under the [MIT license](https://github.com/99linesofcode/docker-php?tab=MIT-1-ov-file).
