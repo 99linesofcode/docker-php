@@ -21,15 +21,15 @@ The FrankenPHP container uses the multi-stage build process and can be further o
 
 If you choose to package your application and serve it differently, make sure to pass the `--target production` flag to your `docker build` command like so: `docker build --target production -t frankenphp:production -f ./frankenphp/Dockerfile .`.
 
-## Contributing to docker-php
+## Contributing
 
 Please review the [Contribution Guidelines](https://github.com/99linesofcode/.github/blob/main/.github/CONTRIBUTING.md).
 
-## Code of Conduct
+## Code of conduct
 
 In order to ensure that the community is welcoming to all, please review and abide by the [Code of Conduct](https://github.com/99linesofcode/.github?tab=coc-ov-file).
 
-## Security Vulnerabilities
+## Security vulnerabilities
 
 Please review [the security policy](https://github.com/99linesofcode/.github?tab=security-ov-file) on how to report security vulnerabilities.
 
