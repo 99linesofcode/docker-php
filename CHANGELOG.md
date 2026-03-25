@@ -1,4 +1,18 @@
-# 0.1.0 (2025-10-15)
+# [0.2.0](https://github.com/99linesofcode/docker-php/compare/v0.1.0...v0.2.0) (2026-03-25)
+
+
+### Bug Fixes
+
+* **dependabot:** time should be of type string instead of int ([ac5a681](https://github.com/99linesofcode/docker-php/commit/ac5a681584a6a35dcc6ee7f480b9d10a5cdee8cc))
+
+
+### Features
+
+* **dependabot:** automatically manage submodules and docker/compose image versions ([cbff808](https://github.com/99linesofcode/docker-php/commit/cbff80860ba2133f185fdaaed7cb8513bce65c93))
+
+
+
+# [0.1.0](https://github.com/99linesofcode/docker-php/compare/68f2143a659cc0fe4a76ae969a368974cd193e6a...v0.1.0) (2025-10-15)
 
 
 ### Bug Fixes
