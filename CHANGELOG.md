@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/99linesofcode/docker-php/compare/v0.2.0...v0.2.1) (2026-03-25)
+
+
+### Bug Fixes
+
+* **deps:** bump base from `b76be42` to `ca67e49` ([40cf3e0](https://github.com/99linesofcode/docker-php/commit/40cf3e04251d4449c71b42fd6b1cd7c34f17d8e6))
+
+
+
 # [0.2.0](https://github.com/99linesofcode/docker-php/compare/v0.1.0...v0.2.0) (2026-03-25)
 
 
