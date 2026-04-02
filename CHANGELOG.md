@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/99linesofcode/docker-php/compare/v0.2.1...v0.2.2) (2026-04-02)
+
+
+### Bug Fixes
+
+* **dependabot:** introduce dependency cooldown to mitigate supply chain attacks ([4542613](https://github.com/99linesofcode/docker-php/commit/4542613ae9a3ffa96e6788dcbdaceea17233f318))
+
+
+
 ## [0.2.1](https://github.com/99linesofcode/docker-php/compare/v0.2.0...v0.2.1) (2026-03-25)
 
 
