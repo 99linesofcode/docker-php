@@ -1,3 +1,13 @@
+## [0.2.3](https://github.com/99linesofcode/docker-php/compare/v0.2.2...v0.2.3) (2026-06-08)
+
+
+### Bug Fixes
+
+* container build issues caused by PECL being deprecated ([817c38d](https://github.com/99linesofcode/docker-php/commit/817c38d71219b8f8c65781b7d9790b6acfa516c8))
+* use tab indentation in Caddyfiles ([cdce8f0](https://github.com/99linesofcode/docker-php/commit/cdce8f0a8e1554ad43426f719b72e2be6a343bce))
+
+
+
 ## [0.2.2](https://github.com/99linesofcode/docker-php/compare/v0.2.1...v0.2.2) (2026-04-02)
 
 
