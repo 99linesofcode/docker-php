@@ -59,11 +59,12 @@ FROM dunglas/frankenphp:builder AS caddy-builder
 COPY --from=caddy:builder /usr/bin/xcaddy /usr/bin/xcaddy
 
 # CGO must be enabled to build FrankenPHP
-ENV CGO_ENABLED=1 \
+RUN CGO_ENABLED=1 \
     XCADDY_SETCAP=1 \
-    XCADDY_GO_BUILD_FLAGS="-ldflags='-w -s' -tags=nobadger,nomysql,nopgx"
-
-RUN xcaddy build \
+    XCADDY_GO_BUILD_FLAGS="-ldflags='-w -s' -tags=nobadger,nomysql,nopgx" \
+    CGO_CFLAGS=$(php-config --includes) \
+    CGO_LDFLAGS="$(php-config --ldflags) $(php-config --libs)" \
+    xcaddy build \
     --output /usr/local/bin/frankenphp \
     --with github.com/dunglas/frankenphp=./ \
     --with github.com/dunglas/frankenphp/caddy=./caddy/ \
@@ -81,7 +82,7 @@ RUN mv ${PHP_INI_DIR}/php.ini-production ${PHP_INI_DIR}/php.ini;
 
 # Replace the official binary by the one containing our custom modules
 COPY --from=caddy-builder /usr/local/bin/frankenphp /usr/local/bin/frankenphp
-COPY --link ./frankenphp/Caddyfile /etc/caddy/Caddyfile
-COPY --link --chmod=755 ./frankenphp/docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint>
+COPY --link ./docker/frankenphp/Caddyfile /etc/caddy/Caddyfile
+COPY --link --chmod=755 ./docker/frankenphp/docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint>
 
 COPY . ./
