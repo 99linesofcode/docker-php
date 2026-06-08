@@ -1,5 +1,5 @@
 {
-  acme_dns cloudflare {$CLOUDFLARE_DNS_API_TOKEN}
+	acme_dns cloudflare {$CLOUDFLARE_DNS_API_TOKEN}
 
 	{$CADDY_GLOBAL_OPTIONS}
 
