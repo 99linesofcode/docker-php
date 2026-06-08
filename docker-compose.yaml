@@ -7,7 +7,7 @@ services:
   mailpit:
     container_name: ${APP_NAME}-mailpit
     healthcheck:
-      test: ["CMD", "curl", "-Ss", "http://localhost:8025/livez"]
+      test: ['CMD', 'curl', '-Ss', 'http://localhost:8025/livez']
       retries: 3
       timeout: 5s
     image: axllent/mailpit:latest
@@ -36,10 +36,11 @@ services:
       - XDEBUG_MODE=${PHP_XDEBUG_MODE:-off}
       - XDEBUG_CONFIG=${PHP_XDEBUG_CONFIG:-client_host=host.docker.internal output_dir=/tmp/xdebug profiler_output_name=cachegrind.out.%R.%u}
     extra_hosts:
-      - "host.docker.internal:host-gateway" # for accessing the host from inside the container
+      - 'host.docker.internal:host-gateway' # for accessing the host from inside the container
     ports:
       - ${FORWARD_PHP_HTTP_PORT:-80}:80
       - ${FORWARD_PHP_HTTPS_PORT:-443}:443
+      - ${FORWARD_PHP_HTTPS_PORT:-443}:443/udp
     restart: unless-stopped
     working_dir: /app
 

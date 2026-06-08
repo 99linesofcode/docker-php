@@ -1,25 +1,26 @@
 # docker-php
 
-Docker PHP is a collection of services and containers intended to be pulled into a project as a submodule or subtree. It contains all the services necessary to serve a modern Laravel application for development purposes. It's very similar to what Laravel Sail provides but is further configured to suit my personal needs and preferences.
+Docker PHP is a collection of services and containers intended to be pulled into a project as a submodule or subtree. It contains all the services necessary to serve a modern Laravel app for development purposes. It's similar to what Laravel Sail provides but is further configured to suit my personal needs and preferences.
 
-Additionally, this repository contains a production ready FrankenPHP container that is preconfigured to automatically request SSL certificates using a Cloudflare DNS challenge when built for production. See the `frankenphp/` subdirectory.
+Additionally, this repository contains a production ready FrankenPHP container that's pre-configured to automatically request SSL certificates using a Cloudflare DNS challenge when built for production. See the `frankenphp/` subdirectory.
 
-## Configuration
+## How to use
 
-1. Run `git submodule add https://github.com/99linesofcode/docker-php.git docker` from your application root;
-1. Copy the `docker-compose.yaml.dist` to the application root;
-1. Configure the environment variables defined in the `.env.example` file in your `.env` in the application root;
+1. Change to your project root directory (for example: `cd ./laravel-starter`);
+1. `git submodule add https://github.com/99linesofcode/docker-php.git docker`;
+1. `cp docker/docker-compose.yaml.dist ./docker-compose.yaml`;
+1. Configure the environment variables defined in `docker/.env.example` file in your `./.env`;
 1. Run `docker compose up -d` to spin up your development environment.
 
 Almost all the relevant configuration is done in/from the `docker-compose.yaml` file. Optional services are disabled by default. You can enable these by uncommenting their respective service blocks.
 
 ## Production
 
-There are several ways to run Docker PHP in production. Using `docker compose -d` similarly to how you run it in development or by manually building and packaging the application up into a docker image and pushing it to and pulling it from a container registry.
+There are several ways to run Docker PHP in production. Using `docker compose -d` similarly to how you run it in development or by manually building and packaging the app up into a docker image and pushing it to and pulling it from a container registry.
 
-The FrankenPHP container uses the multi-stage build process and can be further optimized for production. If you intend to use `docker compose` you will have to change the `services.frankenphp.build.target` to `production`.
+The FrankenPHP container uses the multi-stage build process and can be further optimized for production. If you intend to use `docker compose` in production you will have to change the `services.frankenphp.build.target` to `production`.
 
-If you choose to package your application and serve it differently, make sure to pass the `--target production` flag to your `docker build` command like so: `docker build --target production -t frankenphp:production -f ./frankenphp/Dockerfile .`.
+If you choose to package your app and serve it differently, make sure to pass the `--target production` flag to your `docker build` command like so: `docker build --target production -t frankenphp:production -f ./frankenphp/Dockerfile .`.
 
 ## Contributing
 
