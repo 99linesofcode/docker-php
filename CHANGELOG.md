@@ -1,3 +1,12 @@
+## [0.2.5](https://github.com/99linesofcode/docker-php/compare/v0.2.4...v0.2.5) (2026-06-09)
+
+
+### Bug Fixes
+
+* **deps:** bump base from `ab6058d` to `22b8858` ([754ce91](https://github.com/99linesofcode/docker-php/commit/754ce914f79a08881f13e0731de20bef370a8f80))
+
+
+
 ## [0.2.4](https://github.com/99linesofcode/docker-php/compare/v0.2.3...v0.2.4) (2026-06-08)
 
 
@@ -32,20 +41,6 @@
 ### Bug Fixes
 
 * **deps:** bump base from `b76be42` to `ca67e49` ([40cf3e0](https://github.com/99linesofcode/docker-php/commit/40cf3e04251d4449c71b42fd6b1cd7c34f17d8e6))
-
-
-
-# [0.2.0](https://github.com/99linesofcode/docker-php/compare/v0.1.0...v0.2.0) (2026-03-25)
-
-
-### Bug Fixes
-
-* **dependabot:** time should be of type string instead of int ([ac5a681](https://github.com/99linesofcode/docker-php/commit/ac5a681584a6a35dcc6ee7f480b9d10a5cdee8cc))
-
-
-### Features
-
-* **dependabot:** automatically manage submodules and docker/compose image versions ([cbff808](https://github.com/99linesofcode/docker-php/commit/cbff80860ba2133f185fdaaed7cb8513bce65c93))
 
 
 
