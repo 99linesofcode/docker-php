@@ -1,3 +1,12 @@
+## [0.2.6](https://github.com/99linesofcode/docker-php/compare/v0.2.5...v0.2.6) (2026-06-10)
+
+
+### Bug Fixes
+
+* **deps:** bump base from `22b8858` to `7bd8f5a` ([c1f31c6](https://github.com/99linesofcode/docker-php/commit/c1f31c6e90054e7c897dea66f05bc61773977e06))
+
+
+
 ## [0.2.5](https://github.com/99linesofcode/docker-php/compare/v0.2.4...v0.2.5) (2026-06-09)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **dependabot:** introduce dependency cooldown to mitigate supply chain attacks ([4542613](https://github.com/99linesofcode/docker-php/commit/4542613ae9a3ffa96e6788dcbdaceea17233f318))
-
-
-
-## [0.2.1](https://github.com/99linesofcode/docker-php/compare/v0.2.0...v0.2.1) (2026-03-25)
-
-
-### Bug Fixes
-
-* **deps:** bump base from `b76be42` to `ca67e49` ([40cf3e0](https://github.com/99linesofcode/docker-php/commit/40cf3e04251d4449c71b42fd6b1cd7c34f17d8e6))
 
 
 
