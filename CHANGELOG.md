@@ -1,3 +1,13 @@
+## [0.2.7](https://github.com/99linesofcode/docker-php/compare/v0.2.6...v0.2.7) (2026-06-20)
+
+
+### Bug Fixes
+
+* building image for production ([dacc8d8](https://github.com/99linesofcode/docker-php/commit/dacc8d842e8034e0150ad204f95d05ce6d295759))
+* **caddy:** we're behind a reverse proxy, no need to generate our own certificates ([0e5f909](https://github.com/99linesofcode/docker-php/commit/0e5f909ba0ad665da4162736c75fa2dc678709b9))
+
+
+
 ## [0.2.6](https://github.com/99linesofcode/docker-php/compare/v0.2.5...v0.2.6) (2026-06-10)
 
 
@@ -32,15 +42,6 @@
 
 * container build issues caused by PECL being deprecated ([817c38d](https://github.com/99linesofcode/docker-php/commit/817c38d71219b8f8c65781b7d9790b6acfa516c8))
 * use tab indentation in Caddyfiles ([cdce8f0](https://github.com/99linesofcode/docker-php/commit/cdce8f0a8e1554ad43426f719b72e2be6a343bce))
-
-
-
-## [0.2.2](https://github.com/99linesofcode/docker-php/compare/v0.2.1...v0.2.2) (2026-04-02)
-
-
-### Bug Fixes
-
-* **dependabot:** introduce dependency cooldown to mitigate supply chain attacks ([4542613](https://github.com/99linesofcode/docker-php/commit/4542613ae9a3ffa96e6788dcbdaceea17233f318))
 
 
 
