@@ -2,6 +2,11 @@
 
 set -e
 
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+    set -- frankenphp "$@"
+fi
+
 # TODO: add deploy:setup command on first deployment
 # TODO: add deploy:finalize command to handle post deployment (artisan down, a migrate, a optimize, etc.)
 
