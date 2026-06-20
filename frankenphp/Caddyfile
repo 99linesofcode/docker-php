@@ -1,5 +1,7 @@
 {
-	acme_dns cloudflare {$CLOUDFLARE_DNS_API_TOKEN}
+	servers {
+		trusted_proxies static private_ranges
+	}
 
 	{$CADDY_GLOBAL_OPTIONS}
 
