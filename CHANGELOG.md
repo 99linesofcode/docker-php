@@ -1,3 +1,12 @@
+## [0.2.8](https://github.com/99linesofcode/docker-php/compare/v0.2.7...v0.2.8) (2026-07-06)
+
+
+### Bug Fixes
+
+* **github:** automatic updates workflow was renamed ([28f2758](https://github.com/99linesofcode/docker-php/commit/28f2758ba8bf8b6024153baf50ffd8d19ddd2ca7))
+
+
+
 ## [0.2.7](https://github.com/99linesofcode/docker-php/compare/v0.2.6...v0.2.7) (2026-06-20)
 
 
@@ -32,16 +41,6 @@
 ### Bug Fixes
 
 * **deps:** bump base from `ca67e49` to `ab6058d` ([a4a2448](https://github.com/99linesofcode/docker-php/commit/a4a2448918a0e9b154eb5e397a21676599254fb5))
-
-
-
-## [0.2.3](https://github.com/99linesofcode/docker-php/compare/v0.2.2...v0.2.3) (2026-06-08)
-
-
-### Bug Fixes
-
-* container build issues caused by PECL being deprecated ([817c38d](https://github.com/99linesofcode/docker-php/commit/817c38d71219b8f8c65781b7d9790b6acfa516c8))
-* use tab indentation in Caddyfiles ([cdce8f0](https://github.com/99linesofcode/docker-php/commit/cdce8f0a8e1554ad43426f719b72e2be6a343bce))
 
 
 
