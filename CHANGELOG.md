@@ -1,3 +1,15 @@
+# [1.0.0](https://github.com/99linesofcode/docker-php/compare/v0.2.10...v1.0.0) (2026-09-16)
+
+
+* chore!: remove soketi service in favor of Laravel Reverb ([804da64](https://github.com/99linesofcode/docker-php/commit/804da6438cd4a768cbe0f41faeacbbaf122185c6))
+
+
+### BREAKING CHANGES
+
+* the soketi container no longer ships in the composed stack; run Laravel Reverb where websockets are needed.
+
+
+
 ## [0.2.10](https://github.com/99linesofcode/docker-php/compare/v0.2.9...v0.2.10) (2026-09-16)
 
 
@@ -32,15 +44,6 @@
 
 * building image for production ([dacc8d8](https://github.com/99linesofcode/docker-php/commit/dacc8d842e8034e0150ad204f95d05ce6d295759))
 * **caddy:** we're behind a reverse proxy, no need to generate our own certificates ([0e5f909](https://github.com/99linesofcode/docker-php/commit/0e5f909ba0ad665da4162736c75fa2dc678709b9))
-
-
-
-## [0.2.6](https://github.com/99linesofcode/docker-php/compare/v0.2.5...v0.2.6) (2026-06-10)
-
-
-### Bug Fixes
-
-* **deps:** bump base from `22b8858` to `7bd8f5a` ([c1f31c6](https://github.com/99linesofcode/docker-php/commit/c1f31c6e90054e7c897dea66f05bc61773977e06))
 
 
 
