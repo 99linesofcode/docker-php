@@ -46,7 +46,6 @@ services:
       # - meilisearch
       # - mysql
       # - redis
-      # - soketi
     volumes:
       - .:/app
       # - $HOME/Development/profiling/${APP_NAME}:/tmp/xdebug # mount xdebug and cachegrind output for profiling analysis on host machine
@@ -64,11 +63,6 @@ services:
       service: redis
     volumes:
       - redis:/data
-
-  # soketi:
-  #   extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
-  #     file: ./docker/docker-compose.yaml
-  #     service: soketi
 
   # webgrind:
   #   extends: # see: https://docs.docker.com/compose/how-tos/multiple-compose-files/extends/
