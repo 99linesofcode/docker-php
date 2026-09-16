@@ -10,7 +10,7 @@ services:
       test: ['CMD', 'curl', '-Ss', 'http://localhost:8025/livez']
       retries: 3
       timeout: 5s
-    image: axllent/mailpit:latest
+    image: axllent/mailpit:v1.31.1
     ports:
       - ${FORWARD_MAILPIT_PORT:-1025}:1025
       - ${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025
@@ -70,7 +70,7 @@ services:
 
   webgrind:
     container_name: ${APP_NAME}-webgrind
-    image: jokkedk/webgrind:latest
+    image: jokkedk/webgrind:1.9.4
     ports:
       - ${FORWARD_WEBGRIND_PORT:-8080}:80
     restart: unless-stopped
