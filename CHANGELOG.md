@@ -1,3 +1,12 @@
+## [0.2.10](https://github.com/99linesofcode/docker-php/compare/v0.2.9...v0.2.10) (2026-09-16)
+
+
+### Bug Fixes
+
+* **deps:** bump base from `50923d3` to `b2b1048` ([#24](https://github.com/99linesofcode/docker-php/issues/24)) ([1458b96](https://github.com/99linesofcode/docker-php/commit/1458b9688473965dd98e2150b7dddf530ed24076))
+
+
+
 ## [0.2.9](https://github.com/99linesofcode/docker-php/compare/v0.2.8...v0.2.9) (2026-09-06)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **deps:** bump base from `22b8858` to `7bd8f5a` ([c1f31c6](https://github.com/99linesofcode/docker-php/commit/c1f31c6e90054e7c897dea66f05bc61773977e06))
-
-
-
-## [0.2.5](https://github.com/99linesofcode/docker-php/compare/v0.2.4...v0.2.5) (2026-06-09)
-
-
-### Bug Fixes
-
-* **deps:** bump base from `ab6058d` to `22b8858` ([754ce91](https://github.com/99linesofcode/docker-php/commit/754ce914f79a08881f13e0731de20bef370a8f80))
 
 
 
