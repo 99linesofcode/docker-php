@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/99linesofcode/docker-php/compare/v1.0.0...v1.0.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* **deps:** bump base from `b2b1048` to `fb9c424` ([#25](https://github.com/99linesofcode/docker-php/issues/25)) ([36c6b84](https://github.com/99linesofcode/docker-php/commit/36c6b84ca54516102dd3801d80249ace5ea855f7))
+
+
+
 # [1.0.0](https://github.com/99linesofcode/docker-php/compare/v0.2.10...v1.0.0) (2026-09-16)
 
 
@@ -34,16 +43,6 @@
 ### Bug Fixes
 
 * **github:** automatic updates workflow was renamed ([28f2758](https://github.com/99linesofcode/docker-php/commit/28f2758ba8bf8b6024153baf50ffd8d19ddd2ca7))
-
-
-
-## [0.2.7](https://github.com/99linesofcode/docker-php/compare/v0.2.6...v0.2.7) (2026-06-20)
-
-
-### Bug Fixes
-
-* building image for production ([dacc8d8](https://github.com/99linesofcode/docker-php/commit/dacc8d842e8034e0150ad204f95d05ce6d295759))
-* **caddy:** we're behind a reverse proxy, no need to generate our own certificates ([0e5f909](https://github.com/99linesofcode/docker-php/commit/0e5f909ba0ad665da4162736c75fa2dc678709b9))
 
 
 
