@@ -4,7 +4,7 @@ set -e
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
-    set -- frankenphp "$@"
+    set -- frankenphp run "$@"
 fi
 
 # TODO: add deploy:setup command on first deployment

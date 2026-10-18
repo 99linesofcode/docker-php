@@ -53,6 +53,8 @@ COPY --link ./frankenphp/php.ini-development ${PHP_INI_DIR}/php.ini
 #
 FROM base AS composer-builder
 
+COPY --link ./composer.json ./composer.lock ./
+
 RUN install-php-extensions \
     @composer && \
     composer install -n --no-cache --prefer-dist --no-dev --no-scripts -o -a;
@@ -64,6 +66,8 @@ RUN mv ${PHP_INI_DIR}/php.ini-production ${PHP_INI_DIR}/php.ini;
 # Replace the official binary by the one containing our custom modules
 # COPY --from=caddy-builder /usr/local/bin/frankenphp /usr/local/bin/frankenphp
 COPY --link ./docker/frankenphp/Caddyfile /etc/caddy/Caddyfile
-# COPY --link --chmod=755 ./docker/frankenphp/docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint
+COPY --link --chmod=755 ./docker/frankenphp/docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint
 
 COPY . ./
+COPY --link --from=composer-builder /app/vendor ./vendor
+COPY --link .env.production .env
