@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/99linesofcode/docker-php/compare/v1.0.4...v1.0.5) (2026-10-18)
+
+
+### Bug Fixes
+
+* **frankenphp:** ship .env.production as itself and never a .env ([445153d](https://github.com/99linesofcode/docker-php/commit/445153d50ab77dd6153188e4039d4dcee02e2571))
+
+
+
 ## [1.0.4](https://github.com/99linesofcode/docker-php/compare/v1.0.3...v1.0.4) (2026-10-18)
 
 
@@ -35,18 +44,6 @@
 ### Bug Fixes
 
 * **deps:** bump base from `b2b1048` to `fb9c424` ([#25](https://github.com/99linesofcode/docker-php/issues/25)) ([36c6b84](https://github.com/99linesofcode/docker-php/commit/36c6b84ca54516102dd3801d80249ace5ea855f7))
-
-
-
-# [1.0.0](https://github.com/99linesofcode/docker-php/compare/v0.2.10...v1.0.0) (2026-09-16)
-
-
-* chore!: remove soketi service in favor of Laravel Reverb ([804da64](https://github.com/99linesofcode/docker-php/commit/804da6438cd4a768cbe0f41faeacbbaf122185c6))
-
-
-### BREAKING CHANGES
-
-* the soketi container no longer ships in the composed stack; run Laravel Reverb where websockets are needed.
 
 
 
