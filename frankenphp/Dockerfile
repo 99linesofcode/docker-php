@@ -70,3 +70,4 @@ COPY --link --chmod=755 ./docker/frankenphp/docker-php-entrypoint.sh /usr/local/
 
 COPY . ./
 COPY --link --from=composer-builder /app/vendor ./vendor
+COPY --link .env.production .env
