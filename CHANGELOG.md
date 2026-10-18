@@ -1,3 +1,16 @@
+## [1.0.4](https://github.com/99linesofcode/docker-php/compare/v1.0.3...v1.0.4) (2026-10-18)
+
+
+### Bug Fixes
+
+* **deps:** bump base from `4413eec` to `d260d4d` ([#30](https://github.com/99linesofcode/docker-php/issues/30)) ([23dd104](https://github.com/99linesofcode/docker-php/commit/23dd104106b172257759422b067701257d2cdfc1))
+* **deps:** bump base from `d260d4d` to `fa8f66b` ([#31](https://github.com/99linesofcode/docker-php/issues/31)) ([e3af6dd](https://github.com/99linesofcode/docker-php/commit/e3af6dd0ceeddc9d6dff0972b22f68bf1d7864cc))
+* **deps:** bump base from `ed0f6a3` to `4413eec` ([#29](https://github.com/99linesofcode/docker-php/issues/29)) ([07f6214](https://github.com/99linesofcode/docker-php/commit/07f621405ef7bd6235d13fef8fbb42a338bf540d))
+* **deps:** bump base from `fa8f66b` to `c8ddfa8` ([#32](https://github.com/99linesofcode/docker-php/issues/32)) ([6f1d651](https://github.com/99linesofcode/docker-php/commit/6f1d65128100e34416eeed4419418b972059fe15))
+* **frankenphp:** copy vendor into the production image and enable the entrypoint ([#33](https://github.com/99linesofcode/docker-php/issues/33)) ([e920c25](https://github.com/99linesofcode/docker-php/commit/e920c256686d1ce972986b767c86e8795c32b469))
+
+
+
 ## [1.0.3](https://github.com/99linesofcode/docker-php/compare/v1.0.2...v1.0.3) (2026-09-22)
 
 
@@ -34,15 +47,6 @@
 ### BREAKING CHANGES
 
 * the soketi container no longer ships in the composed stack; run Laravel Reverb where websockets are needed.
-
-
-
-## [0.2.10](https://github.com/99linesofcode/docker-php/compare/v0.2.9...v0.2.10) (2026-09-16)
-
-
-### Bug Fixes
-
-* **deps:** bump base from `50923d3` to `b2b1048` ([#24](https://github.com/99linesofcode/docker-php/issues/24)) ([1458b96](https://github.com/99linesofcode/docker-php/commit/1458b9688473965dd98e2150b7dddf530ed24076))
 
 
 
